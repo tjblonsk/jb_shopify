@@ -1,0 +1,152 @@
+<style>
+
+
+</style>
+
+<div class="container cart_page">
+
+<form action="/cart" method="post" id="cart_form">
+  <div class="sixteen columns">
+    <div class="section clearfix">
+      <h1>Shopping Cart</h1>
+    </div>
+  </div>
+  
+
+  {% if cart.item_count == 0 %}
+    <div class="sixteen columns">
+      <div class="section clearfix">
+        <p class="quote">There are no items in your cart. <a href="/collections/all">Continue Shopping &rarr;</a></p>    
+      </div>
+    </div>
+  {% else %}
+    
+   
+    
+    
+    <div class="checkout_table_header">    
+      <div class="ten columns">      
+        <h4>Item</h4>
+      </div>
+          
+      <div class="two columns">
+        <h4>Price</h4>
+      </div>    
+    
+      <div class="one column">
+        <h4>Qty</h4>
+      </div>
+    
+      <div class="three columns">
+        <h4>Total</h4>
+      </div>
+    
+      <div class="clear"></div>
+    </div>
+    
+    <ul style="border:0">
+    {% for item in cart.items %}
+      <li {%if forloop.last %}style="border-bottom: 1px solid #cccccc;"{%endif%}>
+      <div class="four columns product_row">
+         <a href="{{ item.product.url }}" title="{{ item.product.title | escape }}">
+           {% assign found = false %}
+           {% for img in item.product.images %}
+             {% if found == false and item.variant.title contains img.alt %}
+               <img src="{{ img | product_img_url: 'compact' }}"  alt="{{ item.alt | escape }}" />
+               {% assign found = true %}
+              {% endif %}
+           {% endfor %}
+           {% if found == false %}
+             <img src="{{ item.product.featured_image | product_img_url: 'compact' }}"  alt="{{ item.product.featured_image.alt | escape }}" />
+           {% endif %}           
+         </a>
+      </div> 
+    
+      <div class="six columns title_column">
+        <p class="cart_price">
+          {{ item.price | money }}
+        </p>
+        <p>
+          <a href="{{item.product.url }}" title="{{ item.title | escape }}">{{ item.title }}</a>
+        </p> 
+        
+        {% if item.properties %}
+          <p>
+          {% for p in item.properties %}
+            {% unless p.last == blank %}
+              {% if p.last contains '/uploads/' %}
+                {{ p.first }}: <a class="lightbox" href="{{ p.last }}">uploaded file</a><br />
+              {% else %}
+                {{ p.first }}: {{ p.last }}<br />
+              {% endif %}
+            {% endunless %}
+          {% endfor %}
+          </p>
+        {% endif %}
+        
+        <p class="cart_description">
+          {{ product.description | strip_html | truncatewords: settings.description_words | replace: 'Description', '' | replace: 'Specs', '' | replace: 'Shipping', '' | replace: 'Details', ''  }}
+        </p>         
+      </div>
+    
+      <div class="two columns">
+        <p class="price_total">
+          {{ item.price | money }}
+        </p>
+      </div>
+
+      <div class="one column mobile_right" id="quantity_{{ forloop.index }}">
+        <input type="number" min="0" size="2" class="quantity" name="updates[]" id="updates_{{ item.id }}" value="{{ item.quantity }}" />
+      </div>
+      
+      <div class="two columns mobile_right">
+        <p class="price_total">{{ item.line_price | money }}</p>
+        
+        <p class="update_or_remove">
+          <a href="/cart/change/{{ item.id }}?quantity=0{% for p in item.properties %}&properties[{{ p.first }}]={{ p.last }}{% endfor %}" title="Remove Item">Remove</a>
+          <em>or</em>
+          <a href="#" class="update_subtotal">Update</a> 
+        </p>
+      </div>
+      
+      <div class="one column remove_column">
+        <a class="button remove" href="/cart/change/{{ item.id }}?quantity=0{% for p in item.properties %}&properties[{{ p.first }}]={{ p.last }}{% endfor %}" title="Remove Item">x</a>
+      </div>
+    
+      <div class="clear"></div>
+      <div class="sixteen columns">
+      
+      </div>
+    </li>
+    {% endfor %}
+    </ul>
+    <div class="three columns float_right">
+      <h4 class="subtotal">
+        Subtotal
+      </h4>
+      <p class="subtotes">
+        <strong>{{ cart.total_price | money_with_currency }}</strong> 
+       
+      </p>
+      
+       <p>
+        <input type="submit" class="add_to" id="checkout" name="checkout" value="Checkout" />
+       
+      </p>
+    </div>
+
+  
+    
+
+  
+    
+
+
+
+    {% include 'cart-shipping-calculator' %}
+  {% endif %}
+
+</form>
+  
+  
+</div>

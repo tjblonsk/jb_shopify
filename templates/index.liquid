@@ -1,0 +1,156 @@
+<script>
+$(document).ready(function(){
+$("#top_hero").backstretch([
+  
+  
+  
+   "{{'slide_1.jpg'|asset_url}}",
+   "{{'slide_2.jpg'|asset_url}}",
+   "{{'slide_3.jpg'|asset_url}}",
+   "{{'slide_4.jpg'|asset_url}}",
+   "{{'slide_5.jpg'|asset_url}}",
+], {duration: 3000, fade: 1500,centeredY : true});
+  
+ 
+  });
+</script>  
+
+
+
+
+<!--index collection panel-->
+
+<!--hero-->
+<div id="top_hero"class="full_width_panel">
+
+
+
+
+<!--sepertion-->
+<div class="seperation">
+<div class="seperation-left"></div>
+<div class="seperation-right"></div>
+</div>
+
+  
+</div>  <!--hero-->
+
+<div class="top_bar_clear"></div>
+
+<div class="full_width_panel blend_space">
+
+<div class="container collections">
+  
+  {% assign collection = '' %}
+  {% assign products = collections[settings.frontpage_collection].products %}
+  {% assign products_per_row = settings.frontpage_products_per_row %}
+  {% include 'product-loop' %}
+
+</div>
+
+
+
+
+  
+
+  
+
+
+ 
+
+<!--
+<
+<h1 class="hide_mobile blog_title">From the blog</h1>
+-->
+{%include 'blog grid2'%} 
+
+  
+  
+<div class="hide_mobile container">
+<h1>Gallery feed</h1>
+  
+
+  <div class="flexslider2">
+  <ul id="instagram" class="slides">
+  
+    
+    
+  </ul>
+</div> 
+  
+  
+  
+  
+</div>
+  
+  
+ 
+  
+ </div><!--blendspace-->
+
+
+
+  
+  
+
+
+<style>
+  
+  .touchcarousel-item {width:150px;display:inline-block;margin:0 15px 0 0;}
+ 
+  .touchcarousel-item a{display:inline-block;width:150px;}
+  
+  
+  .flexslider2 {position:relative;height:150px;margin-bottom: 45px;}
+  .slides img{width:100%;}
+  .slides li {margin:0 10px 0 0;}
+</style>
+
+
+
+ <script type="text/javascript">
+   
+      $(function() {
+  $("#instagram").instagram({
+      hash: 'jahangirandbride',
+      show:32,
+      image_size:'standard_resolution',
+    clientId: 'ed2474b4cd6c4a878ac7abaf5e2c7826', 
+    
+    
+    onComplete : function() {    $('.flexslider2').flexslider({
+    animation: "slide",
+    animationLoop: true,
+    itemWidth: 150,
+   
+ 
+    maxItems: 64,
+      slideshow: false,  
+      controlNav: false,  
+ itemMargin: 10,
+
+    
+     });
+        
+              
+     
+         
+        
+
+    }
+      
+   
+  });
+        
+   
+        
+});
+   
+   
+   
+   
+
+   
+   
+
+</script>

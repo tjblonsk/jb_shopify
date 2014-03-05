@@ -1,0 +1,94 @@
+
+
+
+<style>
+.product_wrap{margin-bottom: 100px;}  
+  .top_fix{position:fixed;width:100%;z-index:999;}
+  div.image_wrap{border-radius:8px;margin:0px auto;float: none;display: block;text-align:center;}
+div.image_wrap img{width:100%;}
+  .related_items{text-align:center;}
+  
+  .full_width_image_wrap{width:100%;display:inline-block;}
+  .full_width_image_wrap img{width:100%;height:auto;}
+  
+  #main_wrap img{background-color:#EAECE8;}
+  .nav_logo{position:fixed;}
+</style>
+
+
+<div id="main_wrap">
+
+{%include 'product deets'%}
+<div class="container">
+
+
+<div class="sixteen columns product_wrap" itemscope itemtype="http://data-vocabulary.org/Product" id="product-{{ product.id }}">
+
+  
+  
+<div class="image_wrap thirteen columns" id="feature_image">
+     <a href="{{ product.featured_image | product_img_url: '2048x2048' }}" data-index="" title="{{ product.featured_image.alt | escape }}"><img src="{{ product.featured_image | product_img_url: '1024x1024' }}" alt="{{ product.featured_image.alt | escape }}" itemprop="image" /></a>
+ </div>
+  
+  
+<div class="section product_section clearfix">
+
+    
+ 
+    
+  </div>
+   
+</div>
+ 
+ 
+ </div><!--container-->
+ 
+ <div class="hide_mobile full_width_image_wrap">
+{% for image in product.images offset:1 %}
+<img src="{{ image | product_img_url: 'original'}}" alt="{{ image.alt | escape }}" />
+{% endfor %}
+</div>
+ 
+ 
+ <div class="container">
+ 
+   {%include 'mob deets'%}
+ 
+
+{% if false %}
+  {% capture limit %}{{ settings.products_per_row | plus: 1 }}{% endcapture %}
+ 
+  {% if collection and collection.all_products_count > 1 %}
+    {% assign col = collection.handle %}
+  {% else %}
+    {% assign col = product.collections.last.handle %}
+  {% endif %}
+
+  {% for tag in product.tags %}
+    {% if tag contains 'meta-related-collection-' %}
+      {% assign col = tag | remove: 'meta-related-collection-' %}
+      {% assign collection = collections[col] %}
+      {% capture limit %}{{ collection.products_count | plus: 1 }}{% endcapture %}
+    {% endif %}
+  {% endfor %}
+
+  {% if col %}
+    <div class=" related_items sixteen columns">
+      <div class="section clearfix">
+        <h2>Related Items</h2>
+      </div>
+    </div>
+
+    {% assign skip_product = product %}
+    {% assign products = collections[col].products %}
+    {% assign products_per_row = settings.products_per_row %}
+    {% include 'product-loop' %}
+  {% endif %}
+ 
+{% endif %}
+ 
+</div>
+  
+  
+  
+</div><!--main_wrap-->

@@ -1,0 +1,137 @@
+<script type="text/javascript">
+$(function(){
+$('#Grid').mixitup({
+multiFilter: false,
+  showOnLoad:'all',
+});
+});
+</script>
+<script type="text/javascript">
+$(window).bind("load", function() {
+ $('.controls').fadeIn(800) ;
+  
+ }); 
+</script>  
+<div class="container">
+
+
+    {% if collection.products.size == 0 %}
+  <div style="min-height:400px;"class="sixteen columns">
+        <div class="section clearfix">    
+          <p class="quote">No products found in this collection.</p>
+        </div>
+      </div>
+    {% else %}
+   
+   
+	
+  
+  
+			
+  <div style="border:none;" class="hide_mobile controls">	
+ <!--
+<ul>
+  <li class="heading">Browse</li>
+<li class="filter" data-filter="all">All</li>  
+  
+{% for product_type in shop.types %}
+<li class="filter" data-filter="{{ product_type | handle |replace:'-','_'}}">{{ product_type | capitalize}}</li> 
+{% endfor %}
+</ul>
+-->
+
+
+
+<!--
+<ul>
+  <li class="heading" >Sort by</li>
+<li class="sort" data-sort="data-price" data-order="desc">Low to High</li>
+<li class="sort" data-sort="data-price" data-order="asc">High to Low</li>
+<li class="sort" data-sort="data-date" data-order="desc">Newest</li>
+<li class="sort" data-sort="data-date" data-order="asc">Oldest</li>
+</ul>
+-->
+  
+  
+  
+</div>
+			
+			
+			
+<ul id="Grid">
+{% for product in products limit: limit %}
+  <li class="mix {{product.type | handle |replace:'-','_'}}"data-date="{{product.created_at}}" data-price="{{ product.price }}">
+ {% include 'product-thumbnail-2' %}
+ </li>
+ {%endfor%}
+</ul>
+  
+  
+  
+   {% endif %}
+</div>
+		
+	
+<style>
+  .heading{text-decoration:underline;cursor:default;}
+
+
+
+.controls{
+	display: none;
+    margin:25px 0 0 0;
+    text-align:center;
+	vertical-align: top;
+    position: absolute;
+left: 50%;
+padding: 5px;
+margin-left: -49.5px;
+border: 1px solid #b7b8b4;
+z-index: 99;
+}
+
+  
+  .controls ul{display:inline;}
+  
+ 
+  
+.controls li{
+
+	cursor: pointer;
+    font-size: 9pt;
+	
+}
+
+.controls li.active{
+	font-weight: 700;
+}
+
+
+
+#Grid{
+	
+	text-align: justify;
+	
+}
+
+#Grid:after{
+	content: '';
+	display: inline-block;
+	width: 100%;
+}
+
+#Grid .mix{
+	display: none;
+	opacity: 0;
+	
+	vertical-align: top;
+
+
+}
+
+#Grid .gap{
+	display: inline-block;
+	
+}
+          
+</style>

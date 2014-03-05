@@ -1,0 +1,154 @@
+<script>
+$(document).ready(function(){
+
+  var window_width = $(window).width();
+  
+  $('#css-table').width(window_width);
+  
+  
+ var height = $('.col_quart').width();
+  $('.col_quart').height(height);
+  $('.articles').height(height);
+  $('.col_quart .articles').width(height);
+  $('.articles_mailist').height(height);
+  
+  
+  var col_width = $('.col_half').width();
+  $('.col_half .articles').width(col_width);
+  $('.col_half .articles_mailist').width(col_width);
+
+  var threequarter_width = $('.col_threequarter').width();
+  $('.col_threequarter .articles').width(threequarter_width);
+  $('.col_threequarter .articles_mailist').width(threequarter_width);
+  
+});
+  
+$(window).resize(function(){  
+  var window_width = $(window).width();
+  
+  $('#css-table').width(window_width);
+  
+  
+  
+  
+var height = $('.col_quart').width();
+  $('.col_quart').height(height);
+   $('.articles').height(height);
+  $('.col_quart .articles').width(height);
+  $('.articles_mailist').height(height);
+  
+  var col_width = $('.col_half').width();
+  $('.col_half .articles').width(col_width);
+   $('.col_half .articles_mailist').width(col_width);
+  
+  
+});  
+  
+</script>
+<style>
+
+  
+  
+  
+  
+ 
+</style>
+
+
+
+
+
+
+ 
+<div class="hide_mobile" id="css-table">
+  
+
+  
+  <div id="article_four" class="col_half" style="background:url({{'box_1_img.jpg'|asset_url}});background-size:100% auto;">
+ 
+    <a href="{{settings.box_1_link_target}}"><div style="height:100%;" class="articles">
+<h3>{{settings.box_1_sub_title}}</h3>
+      <h2 style="top:35%">{{settings.box_1_title}}</h2> 
+  <span>{{settings.box_1_link_title}}</span>
+</div>  
+</div> <!--article_four-->
+ </a>  
+<!--
+  <div style:"display:none" id="article_five" class="col_quart" style="background:url({{'box_2_img.jpg'|asset_url}});background-size:auto 100%;">
+
+<div class="articles">
+<h3>{{settings.box_2_sub_title}}</h3>
+  <h2>{{settings.box_2_title}}</h2> 
+  <a href="{{settings.box_2_link_target}}"><span>{{settings.box_2_link_title}}</span></a> 
+</div>
+ 
+  
+</div><!--article_five-->    
+ 
+  <div id="article_six" class="col_half final" style="background:url({{'box_3_img.jpg'|asset_url}}) no-repeat;background-size:100% auto; height:310px;">
+
+
+<a href="{{settings.box_3_link_target}}"><div class="articles">
+<h3>{{settings.box_3_sub_title}}</h3>
+  <h2 style="top:35%">{{settings.box_3_title}}</h2> 
+  <span>{{settings.box_3_link_title}}</span>
+</div></a> 
+ 
+  
+  
+</div><!--article_six-->
+  
+
+</div> 
+  
+  
+<div class="blog_clearfix"></div>
+
+<div  class="hide_mobile" id="css-table">
+
+<!-- 
+<div id="article_seven" class="col_quart" style="background:url({{'box_4_img.jpg'|asset_url}});background-size:auto 100%;">
+
+
+<div class="articles">
+<h3>{{settings.box_4_sub_title}}</h3>
+  <h2>{{settings.box_4_title}}</h2> 
+  <a href="{{settings.box_4_link_target}}"><span>{{settings.box_4_link_title}}</span></a> 
+</div>
+ 
+  
+</div><!--article_seven-->
+    
+ 
+<div id="article_eight" class="col_quart" style="background:url({{'box_5_img.jpg'|asset_url}});background-size:auto 100%;">
+
+  <a href="/pages/quality">
+<div class="articles">
+<h3>{{settings.box_5_sub_title}}</h3>
+  <h2>{{settings.box_5_title}}</h2> 
+  <span>{{settings.box_5_link_title}}</span> 
+</div>
+</a>
+ 
+  
+</div><!--article_eight-->
+  
+<div id="article_nine" class="col_threequarter final" style="background:url({{'box_6_img.jpg'|asset_url}});background-size:100% auto;">
+
+<div class="articles">
+  <h3>Join for exclusive deals + info</h3>
+<h2>jahangir and bride Newsletter</h2>
+<a  href="http://eepurl.com/zh8an" target="_blank" ><span>Sign Up</span></a> 
+</div>
+ 
+  
+  
+</div><!--article_nine-->
+ 
+	
+</div>
+
+
+
+ 
+<div class="blog_clearfix_large"></div>	

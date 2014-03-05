@@ -1,0 +1,53 @@
+<style>
+  
+
+
+</style>  
+  
+<div class="hide_mobile product_deets_wrap"> 
+<h1 itemprop="name">{{ product.title }}</h1>
+<h2  itemprop="price">{{ product.price | money }}</h2>
+
+
+<div id="scrollbar1">
+<div class="scrollbar"><div class="track"><div class="thumb"><div class="end"></div></div></div></div>
+<div class="viewport">
+<div class="product_deets_wrap_inner overview">
+{{product.description}}
+</div>
+</div>
+</div> 
+  
+    
+  {%include 'product-form'%}
+
+        
+<!-- AddThis Button BEGIN -->
+<div class="addthis_toolbox addthis_default_style ">
+<a class="addthis_button_facebook"></a>
+<a class="addthis_button_twitter"></a>
+<a class="addthis_button_instagram"></a>
+<a class="addthis_button_compact"></a>
+<a class="addthis_counter addthis_bubble_style"></a>
+</div>
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=xa-51ae0cf14c66a8be"></script>
+<!-- AddThis Button END -->
+
+  
+    {% if collection %}            
+      
+          <div id ="prev_next_wrap"class="meta">                     
+            {% if collection.next_product %}
+              <p class="right">
+                {{ '&rarr;' | link_to: collection.next_product }}
+              </p>
+            {% endif %}
+
+            {% if collection.previous_product %}
+              <p class="left">
+                 {{ '&larr;' | link_to: collection.previous_product }}
+              </p>
+            {% endif %}
+          </div>
+       {% endif %}
+</div>   

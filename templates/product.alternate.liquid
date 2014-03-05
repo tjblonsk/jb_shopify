@@ -1,0 +1,82 @@
+<div class="container">
+
+
+<div class="sixteen columns" itemscope itemtype="http://data-vocabulary.org/Product" id="product-{{ product.id }}">
+	<div class="section product_section clearfix">
+
+     <div class="six columns {%if settings.product_images_position == 'left' %}omega{% else %}alpha{% endif %}">
+       <h1 class="product_name" itemprop="name">{{ product.title }}</h1>
+
+     
+       
+       {% if collection %}            
+          <hr style="margin-top:0" />
+          <div class="meta">                     
+            {% if collection.next_product %}
+              <p class="right">
+                {{ 'Next' | link_to: collection.next_product }} &rarr;
+              </p>
+            {% endif %}
+
+            {% if collection.previous_product %}
+              <p class="left">
+                &larr; {{ 'Previous' | link_to: collection.previous_product }}
+              </p>
+            {% endif %}
+          </div>
+       {% endif %}
+       
+    </div>
+    
+  
+    
+  </div>
+   
+</div>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+{% if settings.display_related_products %}
+  {% capture limit %}{{ settings.products_per_row | plus: 1 }}{% endcapture %}
+  
+  {% if collection and collection.all_products_count > 1 %}
+    {% assign col = collection.handle %}
+  {% else %}
+    {% assign col = product.collections.last.handle %}
+  {% endif %}
+
+  {% for tag in product.tags %}
+    {% if tag contains 'meta-related-collection-' %}
+      {% assign col = tag | remove: 'meta-related-collection-' %}
+      {% assign collection = collections[col] %}
+      {% capture limit %}{{ collection.products_count | plus: 1 }}{% endcapture %}
+    {% endif %}
+  {% endfor %}
+
+  {% if col %}
+    <div class="sixteen columns">
+      <div class="section clearfix">
+        <h2>Related Items</h2>
+      </div>
+    </div>
+
+    {% assign skip_product = product %}
+    {% assign products = collections[col].products %}
+    {% assign products_per_row = settings.products_per_row %}
+    {% include 'product-loop' %}
+  {% endif %}
+  
+{% endif %}
+  
+</div>

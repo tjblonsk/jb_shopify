@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="en">  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="cleartype" content="on">
+    <meta name="robots" content="index,follow">
+      
+    <title>{% if template contains "index" and pages[settings.homepage].title != blank %}{{ pages[settings.homepage].title }}{% elsif template contains "404" %}Page Not Found{% elsif template contains "index" %}{% else %}{{ page_title }}{% endif %}{% if current_tags %} tagged "{{ current_tags }}"{% endif %}{% if current_page != 1 %} Page {{ current_page }}{% endif %}{% if template contains "index" and pages[settings.homepage].title == blank %}{% else %} | {% endif %}{{ shop.name }}</title>
+    
+    {% if template contains 'list-collections' %}
+      <meta name="description" content="Product collections from {{ shop.name }} - Page {{ current_page}}" />
+    {% elsif page_description != '' %}
+      <meta name="description" content="{{ page_description }}" />
+    {% endif %}
+
+    {% if settings.twitter_username != '' %}
+      <meta name="twitter:card" content="summary">
+      <meta name="twitter:site" content="@{{ settings.twitter_username }}">
+      <meta name="twitter:creator" content="@{{ settings.twitter_username }}">
+    {% endif %}
+
+    {% if template contains 'product' %}
+      <meta property="og:url" content="{{ shop.url }}{{ product.url }}" />
+      <meta property="og:title" content="{{ product.title }}" />
+      <meta property="og:description" content="{{ page_description }}" />
+      <meta property="og:image" content="{{ product.featured_image | product_img_url: 'medium' }}" />
+    {% elsif template contains 'article' %}
+      <meta property="og:url" content="{{ shop.url }}{{ article.url }}" />
+      <meta property="og:title" content="{{ article.title }}" />
+      <meta property="og:description" content="{{ page_description }}" />
+      {% if article.content contains "<img" %}
+        {% assign src = article.content | split: 'src="' %}
+        {% assign src = src[1] | split: '"' | first | replace: '//cdn', 'http://cdn' | replace: 'http:http://', 'http://' | remove: 'https:'  %}
+        {% if src %}<meta property="og:image" content="{{ src }}" />{% endif %}
+      {% endif %}
+    {% else %}
+      {% if settings.use_logo %}
+        <meta property="og:image" content="{{ 'logo.png' | asset_url }}" />
+      {% endif %}
+      <meta property="og:url" content="{{ canonical_url }}" />
+      <meta property="og:title" content="{{ page_title | escape }}" />
+      <meta property="og:description" content="{{ page_description }}" />
+    {% endif %}
+    
+    {% if settings.author != blank %}
+      <meta name="author" content="{{ settings.author }}">
+    {% endif %}
+
+    <!-- Mobile Specific Metas -->
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"> 
+
+    <!-- Stylesheets -->
+    {{ 'styles.css' | asset_url | stylesheet_tag }}
+
+    <!-- Icons -->
+    <link rel="shortcut icon" type="image/x-icon" href="{{ 'favicon.png' | asset_url }}">
+    <link rel="canonical" href="{{ canonical_url }}" />
+
+    <!-- Custom Fonts -->
+    <link href='//fonts.googleapis.com/css?family=.|{% if settings.logo_typeface_method == "google_webfonts" %}{{ settings.logo_google_webfont_font }}:light,normal,bold|{% endif %}{% if settings.headline_typeface_method == "google_webfonts" %}{{ settings.headline_google_webfont_font }}:light,normal,bold|{% endif %}{% if settings.top_bar_typeface_method == "google_webfonts" %}{{ settings.top_bar_google_webfont_font }}:light,normal,bold|{% endif %}{% if settings.nav_typeface_method == "google_webfonts" %}{{ settings.nav_google_webfont_font }}:light,normal,bold|{% endif %}{% if settings.regular_typeface_method == "google_webfonts" %}{{ settings.regular_google_webfont_font }}:light,normal,bold{% endif %}' rel='stylesheet' type='text/css'>
+    
+    {% if template contains 'customer' %}
+      {{ "shopify_common.js" | shopify_asset_url | script_tag }}
+      {{ "customer_area.js"  | shopify_asset_url | script_tag }}
+      <!--[if lt IE 7]>
+        {{ 'json2.js' | shopify_asset_url | script_tag }}
+      <![endif]-->
+    {% endif %}
+        
+    <!-- jQuery and jQuery fallback -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write("<script src='{{ "jquery-1.7.2.min.js" | asset_url }}'>\x3C/script>")</script>
+    
+  
+    <!--none template scripts-->
+
+ <!--fonts--> 
+
+  {{ 'jquery.tinyscrollbar.min.js' | asset_url | script_tag }}
+  
+   {{ 'app.js' | asset_url | script_tag }}
+  
+  
+  {{ 'jquery.instagram.js' | asset_url | script_tag }}
+  {{ 'jquery.backstretch.min.js' | asset_url | script_tag }}
+   {{ 'jquery.mixitup.min.js' | asset_url | script_tag }}
+   
+
+ 
+  {{ 'jquery.contentcarousel.js' | asset_url | script_tag }}
+  
+
+  {%unless template == 'product'%}
+ 
+    {{ 'option_selection.js' | shopify_asset_url | script_tag }}
+  {%endunless%}
+  
+    {{ content_for_header }}
+  
+  <script>
+  
+  $(document).ready(function(){
+  
+  $('#search_icon').click(function(){
+  if ($('.search_wrap').is(":hidden")) {
+  $('.search_wrap').slideDown();
+  }else{
+  $('.search_wrap').slideUp();
+  
+  }
+
+});
+  
+  $(window).scroll(function(){ 
+   $('.search_wrap').slideUp();
+  
+  });
+    
+    });
+  
+    
+    
+</script>
+
+  </head>
+  <body>
+  <div class="search_wrap container">
+        <p class="extra_padding">
+        Search for anything in our shop.
+      </p>
+     
+   
+      <form class="search" action="/search">
+        <input type="text" name="q" class="search_box" placeholder="Search..." value="{{ search.terms }}" x-webkit-speech />
+      </form>
+    </div>
+ 
+
+    
+<a class="back_to_top" href="#"><img src="{{'backtoptop.png'|asset_url}}"></a>
+
+<div id="fnav" class="full_width_panel menubar">
+  
+    
+<div class="cart_nav">
+<ul>
+  {%unless template =="product" or template == "search" %}
+  <li><a href="#" id="search_icon" class="search_icon"><img class="searchicon" src="{{'searchicon.png'|asset_url}}"></a></li>
+  {%endunless%}
+  
+  {%if template =="product" or template == "search" %}
+  <li><a href="/search"  class="search_icon"><img class="searchicon" src="{{'searchicon.png'|asset_url}}"></a></li>
+  {%endif%}
+  
+  <li><a href="/cart"><img class="carticon" src="{{'carticon.png'|asset_url}}">{{cart.item_count}}</a></li>
+</ul>
+</div>
+
+<div class="social_nav">
+<!-- AddThis Follow BEGIN -->
+<div class="addthis_toolbox addthis_default_style">
+<a class="addthis_button_facebook_follow" addthis:userid="JahangirandBride"></a>
+<a class="addthis_button_twitter_follow" addthis:userid="JahangirBride"></a>
+<a class="addthis_button_instagram_follow" addthis:userid="jahangirbride"></a>
+</div>
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=xa-51ae0c8c5fec223f"></script>
+<!-- AddThis Follow END -->
+</div>
+
+
+<div class="nav_logo">
+  <a style="display:block;"href="/"><img src="{{'darklogo.png'|asset_url}}">  </a>
+</div> 
+
+
+
+<!--topnav-->
+
+
+
+<div class="hide_mobile nav_panel container">
+<div class="center_nav">
+  
+<ul class="left_nav">
+<li><a href="/collections/mens">MENS</a></li>
+<li>|</li>
+<li><a href="/collections/accessories">ACCESSORIES</a></li>
+</ul>
+  
+  <ul class="right_nav">
+    <li ><a href="/collections/homegoods">HOME GOODS
+      
+      </a></li>
+  <li>|</li>
+    <li><a href="/pages/about">ABOUT</a></li>
+</ul>
+  
+</div>  
+</div>
+  
+</div>
+    
+<div class="mob_only mob_nav container">
+<ul>
+<li><a href="/collections/mens">MENS</a></li>
+<li>|</li>
+<li><a href="/collections/accessories">ACCESSORIES</a></li>
+ <li>|</li>
+    <li ><a href="/collections/homegoods">HOME GOODS</a></li>
+  <li>|</li>
+ <li><a href="/pages/about">ABOUT</a></li>
+</ul>
+  
+</div>  
+
+    
+        {{ content_for_layout }}
+     
+    
+    
+    
+    
+    <!--footer-->
+<div class="full_width_panel page_footer">
+
+<ul>
+{% for link in linklists.footer.links %}
+<li>
+<a href="{{ link.url }}" title="{{ link.title }}">{{ link.title }}</a>
+</li>
+{% endfor %}
+  </ul>
+  
+
+    
+    
+    
+ 
+  <p> © Jahangir & Bride 2013</p>
+
+  
+  
+<div class="facebook_like">
+<iframe src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Fjahangirandbride.myshopify.com&amp;send=false&amp;layout=standard&amp;width=450&amp;show_faces=false&amp;font&amp;colorscheme=light&amp;action=like&amp;height=35" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:450px; height:35px;" allowTransparency="true"></iframe>
+  </div> 
+  
+  
+</div>
+    
+
+    {% if settings.display_social_buttons or settings.display_social_buttons_blog %}
+      <script type="text/javascript">
+        (function() {
+          var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+          po.src = 'https://apis.google.com/js/plusone.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+      </script>
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+    {% endif %}
+
+  </body>
+</html>
