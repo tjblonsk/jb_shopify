@@ -2,13 +2,13 @@
   <a href="{{ product.url | within: collection }}" title="{{ product.featured_image.alt | escape }}">
     <img {% if settings.align_height %}style="height:{{ settings.collection_height }}px"{% endif %} src="{{ product.featured_image | product_img_url: 'large' }}" alt="{{ product.featured_image.alt | escape }}" />
 
-    <div class="info">               
+    <div class="info">
         <span class="title">{{ product.title }}</span>
       <span class="price">
         {% if product.compare_at_price_max > product.price %}
           <span class="was_price">{{ product.compare_at_price_max | money }}</span>
         {% endif %}
-          
+
         {% if product.available %}
           {% if product.price_varies %}
             {% if product.compare_at_price_max > product.price %}
@@ -21,7 +21,7 @@
           {{ product.price_min | money }} - Sold Out
         {% endif %}
       </span>
-    
+
     </div>
     {% if product.compare_at_price_max > product.price %}
       <div class="sale">Sale</div>
@@ -33,10 +33,12 @@
     {% endfor %}
   </a>
 
+<!--
   {% if settings.quick_shop_enabled %}
     <div data-rel="#product-{{ product.id }}" class="quick_shop action_button">
 ~<br>Quick<br>Shop<br>~
     </div>
+-->
 
     <div class="modal" id="product-{{ product.id }}">
       <div title='Close' class='fancybox-close'></div>
@@ -49,11 +51,11 @@
         <p class="modal_price">
           <span class="was_price">
             {% if product.price < product.compare_at_price_max %}
-              {{ product.compare_at_price | money }} 
+              {{ product.compare_at_price | money }}
             {% endif %}
           </span>
           <span class="current_price">
-            {{ product.price | money }} {% if product.available == false %} - Sold Out{% endif %}      
+            {{ product.price | money }} {% if product.available == false %} - Sold Out{% endif %}
           </span>
         </p>
 
@@ -65,7 +67,7 @@
             <a href="{{ product.url | within: collection }}" class="view_product_info" title="View {{ product.title | escape }} Details">View full product details &rarr;</a>
           </p>
         {% endif %}
-    
+
         {% include 'product-form' %}
 
         {% if settings.product_description_position == "bottom" %}
@@ -76,8 +78,8 @@
             <a href="{{ product.url | within: collection }}" class="view_product_info" title="View {{ product.title | escape }} Details">View full product details &rarr;</a>
           </p>
         {% endif %}
-      
-      </div>  
+
+      </div>
 	  </div>
 	{% endif %}
 </div>
