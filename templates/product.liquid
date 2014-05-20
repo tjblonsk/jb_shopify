@@ -47,6 +47,7 @@ div.image_wrap img{width:100%;}
  </div><!--container-->
 
  <div class="hide_mobile full_width_image_wrap">
+<img src="{{ product.featured_image | product_img_url: 'original'}}" alt="{{ product.featured_image.alt | escape }}" />
 {% for image in product.images offset:1 %}
 <img src="{{ image | product_img_url: 'original'}}" alt="{{ image.alt | escape }}" />
 {% endfor %}

@@ -1,4 +1,4 @@
-  
+
 
 
 <!DOCTYPE html>
@@ -18,21 +18,20 @@
     <meta name="msapplication-TileImage" content="/windows-tile.png">
     <meta name="msapplication-TileColor" content="#ffffff">
 
-    
-    
-    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+
+    // <link rel="icon" type="image/x-icon" href="/favicon.ico" />
 
     <meta content="authenticity_token" name="csrf-param" />
 <meta content="T/CZ+XORq7mwQkVXVOGX8tzPQaSsk0tZqCmImV3rKhg=" name="csrf-token" />
 
     <link href="https://a248.e.akamai.net/assets.github.com/assets/github-202e33a586eb990be0ca930957d0d26c9d440e4b.css" media="all" rel="stylesheet" type="text/css" />
     <link href="https://a248.e.akamai.net/assets.github.com/assets/github2-54d5f0f93e4b5fa56548ac41e306faf4eec18a6c.css" media="all" rel="stylesheet" type="text/css" />
-    
+
 
 
       <script src="https://a248.e.akamai.net/assets.github.com/assets/frameworks-92d138f450f2960501e28397a2f63b0f100590f0.js" type="text/javascript"></script>
       <script src="https://a248.e.akamai.net/assets.github.com/assets/github-79f2823dcb759d8be14a47cc3866f523e4e21124.js" type="text/javascript"></script>
-      
+
       <meta http-equiv="x-pjax-version" content="6783c79a73bd54c60e70db0ff2be87db">
 
         <link data-pjax-transient rel='permalink' href='/desandro/imagesloaded/blob/eb363e0db53da02fc180323ba8fe8a320937221e/js/main.js'>
@@ -56,13 +55,13 @@
   <body class="logged_out page-blob windows vis-public env-production  ">
     <div id="wrapper">
 
-      
 
-      
-      
-      
 
-      
+
+
+
+
+
       <div class="header header-logged-out">
   <div class="container clearfix">
 
@@ -84,18 +83,18 @@
 </div>
 
 
-      
 
-      
+
+
 
 
             <div class="site hfeed" itemscope itemtype="http://schema.org/WebPage">
       <div class="hentry">
-        
+
         <div class="pagehead repohead instapaper_ignore readability-menu ">
           <div class="container">
             <div class="title-actions-bar">
-              
+
 
 
 <ul class="pagehead-actions">
@@ -135,7 +134,7 @@
               </h1>
             </div>
 
-            
+
   <ul class="tabs">
       <li class="pulse-nav"><a href="/desandro/imagesloaded/pulse" highlight="pulse" rel="nofollow"><span class="mini-icon mini-icon-pulse"></span></a></li>
     <li><a href="/desandro/imagesloaded" class="selected" highlight="repo_source repo_downloads repo_commits repo_tags repo_branches">Code</a></li>
@@ -151,14 +150,14 @@
 
 
   </ul>
-  
+
 <div class="tabnav">
 
   <span class="tabnav-right">
     <ul class="tabnav-tabs">
           <li><a href="/desandro/imagesloaded/tags" class="tabnav-tab" highlight="repo_tags">Tags <span class="counter ">15</span></a></li>
     </ul>
-    
+
   </span>
 
   <div class="tabnav-widget scope">
@@ -296,17 +295,17 @@
 
 </div>
 
-  
-  
-  
 
 
-            
+
+
+
+
           </div>
         </div><!-- /.repohead -->
 
         <div id="js-repo-pjax-container" class="container context-loader-container" data-pjax-container>
-          
+
 
 
 <!-- blob contrib key: blob_contributors:v21:080d53fa7422c04fe77231328c9cf19b -->
@@ -325,7 +324,7 @@
       <a href="/desandro/imagesloaded/find/master" class="js-slide-to" data-hotkey="t" style="display:none">Show File Finder</a>
 
 
-        
+
   <div class="commit file-history-tease">
     <img class="main-avatar" height="24" src="https://secure.gravatar.com/avatar/d4f27d97239ac248cfcd9d4a50617644?s=140&amp;d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-user-420.png" width="24" />
     <span class="author"><a href="/Darsain" rel="author">Darsain</a></span>
@@ -336,7 +335,7 @@
 
     <div class="participation">
       <p class="quickstat"><a href="#blob_contributors_box" rel="facebox"><strong>1</strong> contributor</a></p>
-      
+
     </div>
     <div id="blob_contributors_box" style="display:none">
       <h2>Users on GitHub who have contributed to this file</h2>
@@ -768,10 +767,10 @@
       <a href="#" class="mini-icon mini-icon-remove-close ajax-error-dismiss"></a>
     </div>
 
-    
-    
+
+
     <span id='server_response_time' data-time='0.04335' data-host='fe19'></span>
-    
+
   </body>
 </html>
 
